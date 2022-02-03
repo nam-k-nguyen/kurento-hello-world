@@ -57,7 +57,7 @@ var sessionHandler = session({
     saveUninitialized: true
 });
 
-app.use(sessionHandler);
+// app.use(sessionHandler);
 
 /*
  * Definition of global variables.
