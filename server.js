@@ -25,6 +25,7 @@ var ws = require('ws');
 var kurento = require('kurento-client');
 var fs = require('fs');
 var https = require('https');
+var http = require('http');
 var MemoryStore = require('memorystore')(session)
 
 var argv = minimist(process.argv.slice(2), {
@@ -79,7 +80,7 @@ var kurentoClient = null;
  */
 var asUrl = url.parse(argv.as_uri);
 var port = asUrl.port;
-var server = https.createServer(options, app).listen(process.env.PORT || port, function () {
+var server = http.createServer(/*options,*/ app).listen(process.env.PORT || port, function () {
     console.log('Kurento Tutorial started');
     console.log('Open ' + url.format(asUrl) + ' with a WebRTC capable browser');
 });
