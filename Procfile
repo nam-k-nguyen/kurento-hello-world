@@ -1,0 +1,1 @@
+web: npm start -- --ws_uri=ws://ec2-54-163-221-60.compute-1.amazonaws.com:8888/kurento
