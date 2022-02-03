@@ -25,6 +25,7 @@ var ws = require('ws');
 var kurento = require('kurento-client');
 var fs = require('fs');
 var https = require('https');
+var MemoryStore = require('memorystore')(session)
 
 var argv = minimist(process.argv.slice(2), {
     default: {
@@ -51,10 +52,16 @@ var app = express();
 app.use(cookieParser());
 
 var sessionHandler = session({
-    secret: 'none',
-    rolling: true,
-    resave: true,
-    saveUninitialized: true
+    // secret: 'none',
+    // rolling: true,
+    // resave: true,
+    // saveUninitialized: true,
+    cookie: { maxAge: 86400000 },
+    store: new MemoryStore({
+      checkPeriod: 86400000 // prune expired entries every 24h
+    }),
+    resave: false,
+    secret: 'keyboard cat'
 });
 
 // app.use(sessionHandler);
